@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "4548538c-fabc-4900-ba05-78a645b6ec0c",
+		"name": "ServiceManual.Web.Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"factoryDevice\": {\r\n        \"id\": 123\r\n    },\r\n    \"created\": \"2022-10-25T18:00:00\",\r\n    \"description\": \"TBD service description\",\r\n    \"criticality\": 1,\r\n    \"state\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:53195/api/servicetasks/add",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "53195",
+					"path": [
+						"api",
+						"servicetasks",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByTaskId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:53195/api/servicetasks/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "53195",
+					"path": [
+						"api",
+						"servicetasks",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"description\": \"Put service description for device here\",\r\n    \"criticality\": 0,\r\n    \"state\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:53195/api/servicetasks/edit",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "53195",
+					"path": [
+						"api",
+						"servicetasks",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:53195/api/servicetasks/remove/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "53195",
+					"path": [
+						"api",
+						"servicetasks",
+						"remove",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:53195/api/servicetasks",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "53195",
+					"path": [
+						"api",
+						"servicetasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByDeviceId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:53195/api/servicetasks/bydevice/59",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "53195",
+					"path": [
+						"api",
+						"servicetasks",
+						"bydevice",
+						"59"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
