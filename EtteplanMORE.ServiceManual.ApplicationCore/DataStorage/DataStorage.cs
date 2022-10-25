@@ -102,11 +102,14 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                 {
                     return false;
                 }
-
-                _serviceTasks.Add(serviceTask);
-
-                return true;
             }
+
+            if(_serviceTasks.Count != 0)
+            {
+                _serviceTasks.Add(serviceTask);
+            }
+
+            return true;
         }
 
         public ServiceTask GetServiceTask(int id)
@@ -156,7 +159,10 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                 {
                     return false;
                 }
+            }
 
+            if (_serviceTasks.Count != 0)
+            {
                 ServiceTask stToChange = _serviceTasks.Find((ServiceTask st) => st.Id == serviceTask.Id);
                 if (stToChange != null)
                 {
@@ -168,8 +174,8 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                 {
                     _serviceTasks.Clear(); // Service Tasks list is corrupted, clear list
                 }
-                return true;
             }
+            return true;
         }
 
         public bool RemoveServiceTask(int id)
@@ -186,7 +192,10 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                 {
                     return false;
                 }
+            }
 
+            if (_serviceTasks.Count != 0)
+            {
                 ServiceTask serviceTask = _serviceTasks.Find((ServiceTask st) => st.Id == id);
                 if (serviceTask != null)
                 {
@@ -196,9 +205,8 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                 {
                     _serviceTasks.Clear(); // Service Tasks list is corrupted, clear list
                 }
-
-                return true;
             }
+            return true;
         }
 
         public ImmutableList<ServiceTask> GetServiceTasks()

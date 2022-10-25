@@ -10,7 +10,7 @@
 	Open Definitions.cs file of EtteplanMORE.ServiceManual.ApplicationCore namespace and change ‘ConnectionString’ constant value if needed.
 	Select ‘Build > Build Solution’ to build solution
 	Set 'EtteplanMORE.ServiceManual.Web' as Startup Project
-	Select ‘Debug > Start Without Debugging’ to run project
+	Select ‘Debug > Start Without Debugging’ to start Web server.
 
 ### How to use Postman application to test ‘ServiceManual’ ASP.NET Core Web API
 
