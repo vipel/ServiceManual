@@ -4,7 +4,8 @@
 
 ### How to build and run ASP.NET Core Web API ‘ServiceManual’ project in Visual Studio
 
-	Crete dbo.factory_device and dbo.service_task tables in Database. In the case of MS SQL Server database scripts located in ./Documents/FactoryDeviceTable.sql and ./Documents/ServiceTaskTable.sql files can be utilized.
+	Crete dbo.factory_device and dbo.service_task tables in Database.
+	Scripts located in ./Documents/FactoryDeviceTable.sql and ./Documents/ServiceTaskTable.sql files can be utilized in the case of MS SQL Server database.
 	Fill-up dbo.factory_device table with records. Data located in ./Documents/seeddata.csv file can be used for that.
 	Open ‘ServiceManual’ project in Visual Studio.
 	Open Definitions.cs file of EtteplanMORE.ServiceManual.ApplicationCore namespace and change ‘ConnectionString’ constant value if needed.

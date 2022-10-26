@@ -12,6 +12,7 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
     {
         private ImmutableList<FactoryDevice> _factoryDevices;
         private ImmutableList<ServiceTask> _serviceTasks;
+        private bool _serviceTasksLoaded;
 
         private SqlConnection _sqlConnection;
         private SqlCommand _sqlCommand;
@@ -21,6 +22,7 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
         {
             _factoryDevices = ImmutableList.Create<FactoryDevice>();
             _serviceTasks = ImmutableList.Create<ServiceTask>();
+            _serviceTasksLoaded = false;
         }
 
         public ImmutableList<FactoryDevice> GetFactoryDevices()
@@ -104,7 +106,7 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                 }
             }
 
-            if(_serviceTasks.Count != 0)
+            if(_serviceTasksLoaded)
             {
                 _serviceTasks.Add(serviceTask);
             }
@@ -114,7 +116,7 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
 
         public ServiceTask GetServiceTask(int id)
         {
-            if (_serviceTasks.Count != 0)
+            if (_serviceTasksLoaded)
             {
                 return _serviceTasks.FirstOrDefault(st => st.Id == id);
             }
@@ -161,7 +163,7 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                 }
             }
 
-            if (_serviceTasks.Count != 0)
+            if (_serviceTasksLoaded)
             {
                 ServiceTask stToChange = _serviceTasks.Find((ServiceTask st) => st.Id == serviceTask.Id);
                 if (stToChange != null)
@@ -173,6 +175,7 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                 else
                 {
                     _serviceTasks.Clear(); // Service Tasks list is corrupted, clear list
+                    _serviceTasksLoaded = false;
                 }
             }
             return true;
@@ -194,7 +197,7 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                 }
             }
 
-            if (_serviceTasks.Count != 0)
+            if (_serviceTasksLoaded)
             {
                 ServiceTask serviceTask = _serviceTasks.Find((ServiceTask st) => st.Id == id);
                 if (serviceTask != null)
@@ -204,6 +207,7 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                 else
                 {
                     _serviceTasks.Clear(); // Service Tasks list is corrupted, clear list
+                    _serviceTasksLoaded = false;
                 }
             }
             return true;
@@ -221,7 +225,7 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
 
         private ImmutableList<ServiceTask> GetTasks(int deviceId = 0)
         {
-            if (_serviceTasks.Count != 0)
+            if (_serviceTasksLoaded)
             {
                 ImmutableList<ServiceTask> serviceTasks = deviceId != 0 ? _serviceTasks.Where(st => st.FactoryDevice.Id == deviceId).ToImmutableList() : _serviceTasks;
                 return serviceTasks.OrderBy(st => st.Criticality).ThenByDescending(st => st.Created).ToImmutableList();
@@ -251,6 +255,11 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore
                     };
                     _serviceTasks = _serviceTasks.Add(serviceTask);
                 }
+            }
+
+            if(deviceId == 0)
+            {
+                _serviceTasksLoaded = true;
             }
             return _serviceTasks;
         }
